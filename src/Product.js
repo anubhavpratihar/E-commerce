@@ -9,10 +9,10 @@ function Product({ id, title, image, price, rating }) {
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
-        id,
-        image,
-        price,
-        rating,
+        id: id,
+        image: image,
+        price: parseFloat(price), // Parse the price as a float
+        rating: parseInt(rating), // Parse the rating as an integer
       },
     });
   };
