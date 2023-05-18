@@ -1,16 +1,13 @@
 import React from "react";
 import "./Header.css";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import StorefrontIcon from "@material-ui/icons/Storefront";
-import SearchIcon from "@material-ui/icons/Search";
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
 function Header() {
-  const [{ basket }] = useStateValue();
-
-  const basketCount = basket.reduce((total, item) => total + item.quantity, 0);
-
+  const [{ basket }, dispatch] = useStateValue();
   return (
     <div className="header">
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -39,9 +36,7 @@ function Header() {
         <Link to="/checkout" style={{ textDecoration: "none" }}>
           <div className="nav__itemBasket">
             <ShoppingBasketIcon />
-            <span className="nav__itemLineTwo nav__basketCount">
-              {basketCount}
-            </span>
+            <span className="nav__itemLineTwo nav__basketCount">{basket.length !== 0 ? basket.length : 0}</span>
           </div>
         </Link>
       </div>
