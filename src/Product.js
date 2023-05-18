@@ -6,15 +6,17 @@ function Product({ id, title, image, price, rating }) {
   const [, dispatch] = useStateValue();
 
   const addToBasket = () => {
-    dispatch({
-      type: "ADD_TO_BASKET",
-      item: {
-        id: id,
-        image: image,
-        price: parseFloat(price), // Parse the price as a float
-        rating: parseInt(rating), // Parse the rating as an integer
-      },
-    });
+    if (!isNaN(price)) {
+      dispatch({
+        type: "ADD_TO_BASKET",
+        item: {
+          id: id,
+          image: image,
+          price: parseFloat(price),
+          rating: rating,
+        },
+      });
+    }
   };
 
   return (
